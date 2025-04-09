@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sequência array</title>
+</head>
+<body>
+    <h2>Monte um array dinamico</h2>
+    <form>
+        <label for="arrayInput">Digite os números separados por vírgula:</label>
+        <input type="text" id="arrayInput" placeholder="Ex: 1,2,3,4,5">
+        <button type="button" onclick="montarArray()">Montar Array</button>
+        <p id="resultado"></p>
+    </form>
+
+    <button type="button" onclick="window.location.href = 'index.html';" style="display: block; margin: 0 auto;">Return to index.html</button>
+
+    <script>
+        function montarArray() {
+            const array = document.getElementById('arrayInput').value.split(',').map(Number);
+
+            const resultado = document.getElementById('resultado');
+            resultado.innerHTML = `<strong>Array montado:</strong> [${array.sort((a, b) => a - b).join(', ') }]`;
+            resultado.innerHTML += `<br><strong>Maior número:</strong> ${Math.max(...array)}`;
+            resultado.innerHTML += `<br><strong>Menor número:</strong> ${Math.min(...array)}`;
+            resultado.innerHTML += `<br><strong>Soma dos números:</strong> ${array.reduce((a, b) => a + b, 0)}`;
+            resultado.innerHTML += `<br><strong>Média dos números:</strong> ${(array.reduce((a, b) => a + b, 0) / array.length).toFixed(2)}`;
+            resultado.innerHTML += `<br><strong>Maior sequência consecutiva:</strong> ${maiorSequenciaConsecutiva(array)}`;
+
+
+        }
+
+        function maiorSequenciaConsecutiva(array) {
+            if( array.length > 0 ){ //se o array for maior que 0 continua
+
+                // Remover os números duplicados
+                const SortedArray = [...new Set(array)].sort((a, b) => a - b); //remove os números duplicados e ordena o array
+                let atual = 1;
+                let longest_streak = 0; // maior sequência
+
+                for (let i = 0; i < SortedArray.length; i++ ) {
+                    // se o proximo numero for igual ao atual + 1
+                    if (SortedArray[i] === SortedArray[i -1] + 1) {// verifica se o número atual é igual ao anterior + 1{
+                        atual += 1; //incrementa a sequência atual
+
+                        longest_streak = Math.max(longest_streak, atual) //incrementa a sequência atual
+                    } else {
+                        atual = 1; //se não for igual, reinicia a sequência
+                    }
+                }
+
+                return longest_streak; //retorna a maior sequência
+            }
+        }
+        
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeetCode</title>
+    <style>
+        h1, h2, h3 {
+            display: inline;
+        }
+        h2 {
+            margin-left: 20px;
+            color: rgb(97, 121, 121);
+        }
+        h3 {
+            margin-left: 40px;
+            color:cornflowerblue;
+        }
+    </style>
+</head>
+<body>
+    <section id="arrayChallenge">
+        <details>
+            <summary><h1>Desafio de Array</h1></summary>
+
+            <details>
+                <summary><h2>Crie uma função que receba um array de números e retorne o maior número do array.</h2></summary>
+                <p>Exemplo:</p>
+                <pre>
+                    Entrada: [3, 5, 7, 2, 8]
+                    Saída: 8
+                </pre>
+                <details>
+                    <summary><h3>Resolução</h3></summary>
+                    <p>Para resolver esse desafio, você pode usar o método Math.max() em conjunto com o operador de espalhamento (...).</p>
+                    <pre>
+                        function encontrarMaiorNumero(array) {
+                            return Math.max(...array);
+                        }
+
+                        // Testando a função
+                        const numeros = [3, 5, 7, 2, 8];
+                        console.log(encontrarMaiorNumero(numeros)); // Saída: 8
+                    </pre>
+                </details>
+            </details>
+
+            <details>
+                <summary><h2>Maior sequência consecutivas de um array</h2></summary>
+                <p>Crie uma função que receba um array de números e retorne o comprimento da maior sequência consecutiva.</p>
+                <p><a href="seq_array.html">Exemplo:</a></p>
+                <pre>
+                    Entrada: [1, 2, 3, 5, 6, 7]
+                    Saída: 3 (sequência: 5, 6, 7)
+                </pre>
+                <details>
+                    <summary><h3>Resolução</h3></summary>
+                    <p>Para resolver esse desafio, você pode usar um loop para percorrer o array e contar a sequência consecutiva.</p>
+                    <pre>
+                        function maiorSequenciaConsecutiva(array) {
+                            let maxCount = 0;
+                            let currentCount = 1;
+
+                            for (let i = 1; i < array.length; i++) {
+                                if (array[i] === array[i - 1] + 1) {
+                                    currentCount++;
+                                } else {
+                                    maxCount = Math.max(maxCount, currentCount);
+                                    currentCount = 1;
+                                }
+                            }
+                            return Math.max(maxCount, currentCount);
+                        }
+
+                        // Testando a função
+                        const numeros = [1, 2, 3, 5, 6, 7];
+                        console.log(maiorSequenciaConsecutiva(numeros)); // Saída: 3
+                    </pre>
+            </details>
+        </details>
+    </section>
+</body>
+</body>
+</html>
