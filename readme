@@ -1,0 +1,60 @@
+# Projeto LeetCode - Desafios de Entrevista para Desenvolvedores
+
+Este projeto foi criado para praticar e resolver desafios comuns em entrevistas técnicas para desenvolvedores de software. Ele contém exemplos de problemas de arrays, como encontrar a maior sequência consecutiva e calcular a frequência de elementos em um array.
+
+## Desafios Implementados
+
+### 1. Maior Sequência Consecutiva de um Array
+Crie uma função que receba um array de números e retorne o comprimento da maior sequência consecutiva.
+
+**Exemplo:**
+```javascript
+function maiorSequenciaConsecutiva(array) {
+    let maxCount = 0;
+    let currentCount = 1;
+    for (let i = 1; i < array.length; i++) {
+        if (array[i] === array[i - 1] + 1) {
+            currentCount++;
+        } else {
+            maxCount = Math.max(maxCount, currentCount);
+            currentCount = 1;
+        }
+    }
+    return Math.max(maxCount, currentCount);
+}
+
+// Testando a função
+const numeros = [1, 2, 3, 5, 6, 7];
+console.log(maiorSequenciaConsecutiva(numeros)); // Saída: 3
+```
+
+### 2. Maior Frequência de Elementos K
+Crie uma função que receba um array de números e um número K, e retorne a maior frequência de elementos K no array.
+
+**Exemplo:**
+```javascript
+function frequencia(array) {
+    const freq = {};
+    array.forEach(num => {
+        freq[num] = (freq[num] || 0) + 1;
+    });
+    return Object.entries(freq).sort((a, b) => b[1] - a[1]);
+}
+
+// Testando a função
+const numeros = [1, 2, 2, 3, 4, 4, 4];
+const result = frequencia(numeros);
+console.log(`Número com maior frequência: ${result[0][0]} repetiu: ${result[0][1]} vezes`);
+// Saída: Número com maior frequência: 4 repetiu: 3 vezes
+```
+
+### Como Usar
+
+Abra os arquivos HTML no navegador:
+- `freq_K.html`: Para testar a frequência de elementos.
+- `seq_array.html`: Para testar a maior sequência consecutiva.
+
+Insira os números no campo de entrada e veja os resultados renderizados na página.
+
+### Objetivo
+Este projeto é uma ótima maneira de praticar problemas de algoritmos e estruturas de dados, que são frequentemente usados em entrevistas técnicas para desenvolvedores de software.

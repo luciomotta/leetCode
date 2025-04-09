@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frequencia array</title>
+</head>
+<body>
+    <form>
+        <label for="arrayInput">Digite os números separados por vírgula:</label>
+        <input type="text" id="arrayInput" placeholder="Ex: 1,2,3,4,5">
+        <button type="button" onclick="montarArray()">Montar Array</button>
+        <p id="resultado"></p>
+    </form>
+
+    <script>
+        function montarArray() {
+            const array = document.getElementById('arrayInput').value.split(',').map(Number);
+            const resultado = document.getElementById('resultado');
+            resultado.innerHTML = `<strong>Array montado:</strong> [${array.sort((a, b) => a - b).join(', ') }]`;
+            
+            const result_K = frequencia(array);
+            const maior = result_K[0][0];
+            const vezes = result_K[0][1];
+
+            resultado.innerHTML += `<br><strong>Número com maior frequência:</strong> ${maior} repetiu: ${vezes} vezes`;
+        }
+        function frequencia(array) {
+            const freq = {};
+
+            array.forEach(num => {
+                freq[num] = (freq[num] || 0) + 1; // joga dentro de chaves e compara se ja estive o freq[1] se não criar um freq{1: 0}...
+
+            });
+
+            return ordenarObject(freq) 
+
+        }
+
+        function ordenarObject(Freq) {
+           return Object.entries(Freq)
+            .sort((a, b) => b[1] - a[1]) // Ordena as chaves numericamente
+        }
+    </script>
+</body>
+</html>
